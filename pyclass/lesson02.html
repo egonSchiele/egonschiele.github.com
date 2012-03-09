@@ -1,0 +1,182 @@
+
+<!doctype html> 
+<html> 
+<head> 
+	<script src="http://usepow.com"></script> 
+  <script src="http://usepow.com/mobile"></script> 
+  <script src="prettify/prettify.js" type="text/javascript" charset="utf-8"></script>
+
+  <link href="style.css?asd" media="screen" rel="stylesheet" type="text/css" />
+  <link href="prettify.css?asd" media="screen" rel="stylesheet" type="text/css" />
+</head> 
+<body onload="prettyPrint()"> 
+<div id="slides"> 
+	<div class="slide title"> 
+    <h1>PyClass</h1>
+    <img src="images/foot.jpg" class="center">
+  </div>
+  <div class="slide">
+    <h2>Today</h2>
+    <ul>
+      <li>Lists (aka Arrays)</li>
+      <li>Tuples</li>
+      <li>Loops</li>
+    </ul>
+  </div>
+	<div class="slide"> 
+    <h2>Examples of lists:</h2>
+        <pre class="prettyprint">
+list1 = [1,2,3,4]
+list2 = [1, "a", "c", 3, "d"]
+list3 = list1 + list2
+</pre>
+<ul>
+  <li>Lists have multiple items</li>
+  <li>Lists can have different types of items</li>
+  </div> 
+
+  <div class="slide"> 
+    <h2>Is This Allowed?</h2>
+    <pre class="prettyprint">
+def hello():
+  print "hi"
+
+l = [1, 2, hello]
+</pre>
+  </div>
+  <div class="slide">
+    <h2>hello != "hello"</h2>
+    <pre class="prettyprint">
+    l = [1, 2, hello] # hello refers to a variable name
+    l2 = [1, 2, "hello"] # "hello" is a string
+    </pre>
+  </div>
+  <div class="slide"> 
+    <h2>Getting Elements In a List</h2>
+<pre class="prettyprint">
+l = [1, 2, hello]
+print l[0] # prints 1
+print l[1] # prints 2
+
+# Tougher Examples:
+l[2]() # prints "hi"
+l[-1]() # prints "hi"
+print l[-2] # prints 2
+</pre>
+  </div>
+  <div class="slide"> 
+    <h2>List Slicing</h2>
+    <pre class="prettyprint">
+l = [2, 4, 6, 8, 10]
+l[0:2] # [2,4]
+l[2:4] # [6,8]
+l[:2]  # [2,4]
+l[2:]  # [6,8,10]
+l[:]   # [2, 4, 6, 8, 10]
+</pre>
+	</div> 
+  <div class="slide"> 
+    <h2>Strings Behave Like Lists!</h2>
+    <pre class="prettyprint">
+a = "foo"
+a[0] # "f"
+a[1] # "o"
+a[:2] # "fo"
+    </pre>
+  </div>
+  <div class="slide">
+    <h2>What Else Can Lists Do?</h2>
+    <pre class="prettyprint"> 
+l = [2, 4, 6, 8, 10]
+l.append(12) # l is now [2, 4, 6, 8, 10, 12]
+len(l) # 6
+l.remove(4) # l is now [2, 6, 8, 10, 12]
+a = l.pop() # l is now [6, 8, 10, 12], a is now 2
+l.index(10) # 2
+l += [10, 20, 30] # l is now [6, 8, 10, 12, 10, 20, 30]
+l.count(10) # 2
+l.sort() # l is now [6, 8, 10, 10, 12, 20, 30]
+l.reverse() # l is now [30, 20, 12, 10, 10, 8, 6]
+    </pre>
+  </div>
+
+  <div class="slide">
+    <h2>Join An Array Back To a String</h2>
+    <pre class="prettyprint"> 
+array = ['A','dead','parrot']
+delim = '.'
+str1 = delim.join(array) #str1 is 'A.dead.parrot'
+str2 = ' '.join(array) #str2 is 'A dead parrot'
+</pre>
+</div>
+
+  <div class="slide">
+    <h2>Shuffle a List</h2>
+    <pre class="prettyprint"> 
+from random import shuffle
+l = [1,2,3,4]
+shuffle(l)
+    </pre>
+  </div>
+
+  <div class="slide">
+    <h2>List Comprehensions</h2>
+    <pre class="prettyprint">
+l = [1,2,3,4,5]
+squares = [x**2 for x in l] # [1, 4, 9, 16, 25]
+even_squares = [x**2 for x in l if x % 2 == 0] # [4, 16]
+</pre>
+</div> 
+<div class="slide">
+  <h2>Tuples</h2>
+  <p>Tuples are immutable lists:<p>
+  <pre class="prettyprint">
+list1 = [1, 2, 3, 4]
+list1.append(5)
+tuple1 = (1, 2, 3, 4)
+tuple1.append(5) # error
+</div>
+<div class="slide">
+  <h2>The For Loop</h2>
+  <pre class="prettyprint">
+l = [1,2,3,4,5]
+squares = []
+for x in l:
+  squares.append(x**2)
+</pre>
+</div>
+<div class="slide">
+  <h2>Range and Enumerate</h2>
+  <pre class="prettyprint">
+squares = [1, 4, 9, 16, 25]
+
+for i in range(len(squares)):
+  print "the element at index", i, "is", squares[i]
+
+for i, x in enumerate(squares):
+  print "the element at index", i, "is", x
+
+</pre>
+</div>
+
+<div class="slide">
+  <h2>Zip</h2>
+  <pre class="prettyprint">
+L1 = [1,2,3,4]
+L2 = [5,6,7,8]
+L3 = zip(L1,L2) # L3 is now [ (1,5) , (2,6) , (3,7) , (4,8) ]
+# Processing both sequences simultaneously in a for loop:
+for (x,y) in zip(L1,L2):
+  print x + y,   
+# prints out: 6 8 10 12
+</pre>
+</div>
+
+<div class="slide">
+  <h2>Problem?</h2>
+  <a href="http://codingbat.com/python/Warmup-2">http://codingbat.com/python/Warmup-2</a>
+</div>
+</body> 
+</html> 
+
+

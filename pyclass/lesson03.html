@@ -1,0 +1,283 @@
+
+<!doctype html> 
+<html> 
+<head> 
+	<script src="http://usepow.com"></script> 
+  <script src="http://usepow.com/mobile"></script> 
+  <script src="prettify/prettify.js" type="text/javascript" charset="utf-8"></script>
+
+  <link href="style.css?asd" media="screen" rel="stylesheet" type="text/css" />
+  <link href="prettify.css?asd" media="screen" rel="stylesheet" type="text/css" />
+</head> 
+<body onload="prettyPrint()"> 
+<div id="slides"> 
+	<div class="slide title"> 
+    <h1>PyClass</h1>
+    <img src="images/foot.jpg" class="center">
+  </div>
+  <div class="slide">
+    <h2>Today</h2>
+    <ul>
+      <li>More Loops</li>
+      <li>Sets</li>
+      <li>Dictionaries</li>
+    </ul>
+  </div>
+	<div class="slide"> 
+    <h2>The While Loop:</h2>
+    <pre class="prettyprint">
+a = 10
+while a > 1:
+  print a
+  a -=1
+</pre>
+<p>The forever loop, (bad but sometimes useful):</p>
+<pre class="prettyprint">
+a = 10
+while True:
+  print a
+  a -= 1
+  if a > 1: break
+</pre>
+  </div> 
+
+  <div class="slide"> 
+    <h2>break and continue</h2>
+    <pre class="prettyprint">
+def find(l, val):
+  for elem in l:
+    if l == val:
+      print "found it!"  
+      break
+    </pre>
+    <pre class="prettyprint">
+def do_if(l, func, func2):
+  for elem in l:
+    if not func(elem): continue
+    func2(elem)
+  </pre>
+  <p>Remember that functions can be passed around!</p>
+  </div>
+  <div class="slide">
+    <h2>sum (v1)</h2>
+    <pre class="prettyprint">
+def sum(l):
+  total = 0
+  for elem in l: total += elem
+  return total
+    </pre>
+  </div>
+  <div class="slide"> 
+    <h2>sum (v2: recursion preview)</h2>
+<pre class="prettyprint">
+  def sum(l):
+    if len(l) == 0: return 0
+    return l[0] + sum(l[1:])
+</pre>
+  </div>
+  <div class="slide"> 
+    <h2>range Revisited</h2>
+    The range function loads all its values into memory:
+    <pre class="prettyprint">
+# okay
+for i in range(1000):
+  print i
+
+# will crash or error, too much memory consumed
+l = # a list of every book on amazon
+for i in range(len(l)):
+  print i
+    </pre>
+	</div> 
+  <div class="slide"> 
+    <h2>What is the size of an int?</h2>
+    <p>In Python 2.6 and above:</p>
+    <pre class="prettyprint">
+>>> import sys
+>>> sys.getsizeof(1)
+24
+    </pre>
+    <p>Not guaranteed to be the same everywhere, just gives you an idea</p>
+    <pre class="prettyprint">
+>>> sys.getsizeof(range(1000))
+8072
+>>> sys.getsizeof(range(1000000000)) # WARNING: DO NOT RUN
+# your computer is now a heater
+    </pre>
+  </div>
+  <div class="slide">
+    <h2>Enter xrange !</h2>
+    <p>Calculates the values when needed instead of loading them all into memory.</p>
+    <pre class="prettyprint"> 
+>>> sys.getsizeof(xrange(1000))
+40
+>>> sys.getsizeof(xrange(100000))
+40
+>>> sys.getsizeof(xrange(10000000000))
+40
+    </pre>
+    <p>xrange returns an iterator. We will learn to make our own iterators in a future class.</p>
+  </div>
+
+  <div class="slide">
+    <h2>Sets</h2>
+    <pre class="prettyprint"> 
+>>> a = set()
+>>> a.add(1)
+>>> a.add(2)
+>>> a.add(1)
+>>> a
+set([1, 2])
+</pre>
+    <pre class="prettyprint"> 
+>>> b = set([1, 1, 1, 2, 3, 4, 5, 5])
+>>> b
+set([1, 2, 3, 4, 5])
+    </pre>
+    <p>Sets are like lists, but with only one copy of each value.</p>
+</div>
+
+  <div class="slide">
+    <h2>A Very Simple unique Function</h2>
+    <pre class="prettyprint"> 
+def unique(l):
+  return list(set(l))
+    </pre>
+  </div>
+
+  <div class="slide">
+    <h2>union and intersection</h2>
+    <p>Intersection (only elements common to both sets):</p>
+    <pre class="prettyprint">
+>>> a & b
+set([1, 2])
+    </pre>
+    <p>Union (elements in either set):</p>
+    <pre class="prettyprint">
+>>> a | b
+set([1, 2, 3, 4, 5])
+</pre>
+</div> 
+<div class="slide">
+  <h2>More Sets</h2>
+  <p>Difference:</p>
+  <pre class="prettyprint">
+>>> b - a
+set([3, 4, 5])
+</pre>
+<p>Subset:<p>
+    <pre class="prettyprint">
+>>> a <= b
+True
+>>> b <= a
+False
+    </pre>
+  </div>
+<div class="slide">
+  <h2>Dictionaries</h2>
+  <p>Key/value pairs:</p>
+  <pre class="prettyprint">
+d = {}
+d["a"] = 1
+d["b"] = 2
+  </pre>
+</div>
+<div class="slide">
+  <h2>Dictionaries vs Lists</h2>
+  <ul>
+    <li>Dictionaries can have any index</li>
+    <li>Dictionaries are not guaranteed to have a specific order</li>
+    <li>Both lists and dictionaries can be used to hold a mix of objects</li>
+  </ul>
+</div>
+
+<div class="slide">
+  <h2>More Dictionaries</h2>
+  <p>Top 3 Beatles Albums:</p>
+  <pre class="prettyprint">
+# dict
+d = {1 : "Sgt. Peppers", 2: "The White Album", 3: "Abbey Road"}
+# list
+l = ["Sgt. Peppers", "The White Album", "Abbey Road"]
+  </pre>
+  <p>Which is a better representation?</p>
+</div>
+
+<div class="slide">
+  <h2>Top 3 Albums By Different Artists:</h2>
+  <pre class="prettyprint">
+# dict
+d = {"The Beatles" : {1 : "Sgt. Peppers", 2: "The White Album", 3: "Abbey Road"},
+     "Radiohead" : {...},
+     "The National" : {...}
+     }
+# list
+l = [["The Beatles", [..]], ["Radiohead", [..]], ["The National", [..]]]
+  </pre>
+</div>
+
+<div class="slide">
+  <h2>Getting Keys and Values</h2>
+  <pre class="prettyprint">
+>>> d = {1 : "Sgt. Peppers", 2: "The White Album", 3: "Abbey Road"}
+>>> d.keys()
+[1, 2, 3]
+>>> d.values()
+['Sgt. Peppers', 'The White Album', 'Abbey Road']
+>>> 
+  </pre>
+</div>
+
+<div class="slide">
+  <h2>The switch Statement</h2>
+  <pre class="prettyprint">
+# This prints 50
+choice = 'ham';
+print { 'pram': 40,
+    'ham' : 50,   
+    'spam': 30,   
+    'eggs': 2 }[choice] 
+  </pre>
+</div>
+
+<div class="slide">
+  <h2>Default Values For a Dictionary</h2>
+  <pre class="prettyprint">
+import collections
+a = collections.defaultdict(lambda: 4)
+print a[5] # will print '4'
+  </pre>
+</div>
+
+<div class="slide">
+  <h2>Dictionaries as Objects</h2>
+  <pre class="prettyprint">
+def sum(l):
+  total = 0
+  for x in l: total += x
+  return total
+
+def length(l):
+  if l == []: return 0
+  return 1 + length(l[1:])
+
+mylist = {"value" : [1, 2, 3, 4]}
+mylist["sum"] = sum
+mylist["length"] = length
+
+print mylist["length"](mylist["value"])
+  </pre>
+</div>
+
+<div class="slide">
+  <h2>Problems</h2>
+  <ul>
+    <li>Write a function that recursively calculates the product of a list</li>
+    <li>Write a function that calculates the nth fibonacci number</li>
+    <li>Write a program that tries to guess the number you are thinking of (use raw_input to get user input)</li>
+    <li>Write a function where you pass in a word, and it tells you other words that rhyme with that word</li>
+  </ul>
+</div>
+
+</body> 
+</html> 

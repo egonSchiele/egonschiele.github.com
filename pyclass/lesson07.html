@@ -1,0 +1,123 @@
+
+<!doctype html> 
+<html> 
+<head> 
+	<script src="http://usepow.com"></script> 
+  <script src="http://usepow.com/mobile"></script> 
+  <script src="prettify/prettify.js" type="text/javascript" charset="utf-8"></script>
+
+  <link href="style.css?asd" media="screen" rel="stylesheet" type="text/css" />
+  <link href="prettify.css?asd" media="screen" rel="stylesheet" type="text/css" />
+</head> 
+<body onload="prettyPrint()"> 
+<div id="slides"> 
+	<div class="slide title"> 
+    <h1>PyClass</h1>
+    <img src="images/foot.jpg" class="center">
+  </div>
+  <div class="slide">
+    <h2>Today</h2>
+    <ul>
+      <li>Advanced Object-oriented Programming</li>
+    </ul>
+  </div>
+  <div class="slide">
+    <h2>Subclassing Built-in Objects: Default Dictionaries</h2>
+    <pre class="prettyprint">
+import copy
+
+class DefaultDict(dict):
+    """Dictionary with a default value for unknown keys."""
+    def __init__(self, default):
+        self.default = default
+
+    def __getitem__(self, key):
+        if key in self: 
+            return self.get(key)
+        else:
+            ## Need copy in case self.default is something like []
+            return self.setdefault(key, copy.deepcopy(self.default))
+
+    def __copy__(self):
+        copy = DefaultDict(self.default)
+        copy.update(self)
+        return copy
+
+
+d = DefaultDict(0)
+d[2] = "a"
+print d[1]
+print d[2]
+    </pre>
+  </div>
+  <div class="slide">
+    <h2>Fibonacci</h2>
+    <pre class="prettyprint">
+def fib(x):
+    if x < 2: return x
+    return fib(x - 1) + fib(x - 2)
+    </pre>
+  </div>
+  <div class="slide"> 
+    <h2>Running Time:</h2>
+    <img src="images/fibonacci.png" />
+  </div> 
+  <div class="slide"> 
+    <h2>Speeding Up Fibonacci:</h2>
+    <pre class="prettyprint">
+memo = {}
+
+def fib(x):
+    global memo
+    if x in memo: return memo[x]
+    if x < 2: return x
+    val = fib(x - 1) + fib(x - 2)
+    memo[x] = val
+    return val
+    </pre>
+  </div>
+
+  <div class="slide"> 
+    <h2>The memoize Decorator:</h2>
+    <pre class="prettyprint">
+class memoize(object):
+   def __init__(self, func):
+      self.func = func
+      self.cache = {}
+   def __call__(self, *args):
+      try:
+         return self.cache[args]
+      except KeyError:
+         value = self.func(*args)
+         self.cache[args] = value
+         return value
+
+@memoize
+def fib(x):
+    if x < 2: return x
+    return fib(x - 1) + fib(x - 2)
+    </pre>
+  </div>
+
+<div class="slide"> 
+  <h2>Iterators:</h2>
+  <p>range is a function, xrange is an iterator</p>
+  <pre class="prettyprint">
+class Counter:
+    def __init__(self, low, high):
+        self.current = low
+        self.high = high
+
+    def __iter__(self):
+        return self
+
+    def next(self):
+        if self.current > self.high:
+            raise StopIteration
+        else:
+            self.current += 1
+            return self.current – 1
+
+for c in Counter(3, 8):
+    print c
+    </pre>

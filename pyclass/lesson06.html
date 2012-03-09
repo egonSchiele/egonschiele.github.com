@@ -1,0 +1,133 @@
+
+<!doctype html> 
+<html> 
+<head> 
+	<script src="http://usepow.com"></script> 
+  <script src="http://usepow.com/mobile"></script> 
+  <script src="prettify/prettify.js" type="text/javascript" charset="utf-8"></script>
+
+  <link href="style.css?asd" media="screen" rel="stylesheet" type="text/css" />
+  <link href="prettify.css?asd" media="screen" rel="stylesheet" type="text/css" />
+</head> 
+<body onload="prettyPrint()"> 
+<div id="slides"> 
+	<div class="slide title"> 
+    <h1>PyClass</h1>
+    <img src="images/foot.jpg" class="center">
+  </div>
+  <div class="slide">
+    <h2>Today</h2>
+    <ul>
+      <li>Object-oriented Programming part deux</li>
+    </ul>
+  </div>
+  <div class="slide">
+    <h2>Class Variables vs Instance Variables</h2>
+    <pre class="prettyprint">
+class Dog(object):
+    sound = "woof" # class variable
+
+    def __init__(self, name):
+        self.name = name # instance variable
+
+    def bark(self):
+        print Dog.sound
+
+d = Dog("snowy")
+d.bark()
+    </pre>
+  </div>
+  <div class="slide">
+    <h2>Class Methods vs Instance Methods</h2>
+    <pre class="prettyprint">
+class Dog(object):
+    sound = "woof" # class variable
+
+    def __init__(self, name):
+        self.name = name # instance variable
+
+    @classmethod # decorator
+    def bark(cls):
+        print Dog.sound
+
+d = Dog("snowy")
+d.bark()
+
+# This works too! Only because it's a class method.
+Dog.bark()
+    </pre>
+  </div>
+  <div class="slide"> 
+    <h2>Inheritance:</h2>
+    <pre class="prettyprint">
+class Animal(object):
+    @classmethod
+    def speak(cls):
+        print cls.sound
+
+class Dog(Animal):
+    sound = "woof"
+
+class Cat(Animal):
+    sound = "meow"
+
+d = Dog()
+d.speak()
+    </pre>
+  </div> 
+  <div class="slide"> 
+    <h2>Address Book v1:</h2>
+    <pre class="prettyprint">
+class AddressBook(object):
+    def __init__(self):
+        self.entries = {}
+
+a = AddressBook()
+a.entries["adit"] = "bluemangroupie@gmail.com"
+
+if "adit" in a.entries:
+    print "address exists"
+else:
+    print "nothing found."
+    </pre>
+  </div>
+
+  <div class="slide"> 
+    <h2>Address Book v2:</h2>
+    <p>Now with encapsulation!</p>
+    <pre class="prettyprint">
+class AddressBook(object):
+    def __init__(self):
+        self.entries = {}
+
+    def add_entry(self, name, email):
+        self.entries[name] = email
+
+    def find(self, name):
+        return self.entries.get(name, "nothing found.")
+    </pre>
+  </div>
+  <div class="slide">
+    <h2>Address Book v3:</h2>
+    <pre class="prettyprint">
+class Entry(object):
+    def __init__(self, name, email="", phone="", address=""):
+        self.name = name
+        self.email = email
+        self.phone = phone
+        self.address = address
+
+class AddressBook(object):
+    def __init__(self):
+        self.entries = []
+
+    def add_entry(self, name, email="", phone="", address=""):
+        self.entries += [Entry(name, email, phone, address)]
+
+    def find(self, name):
+        for entry in self.entries:
+            if entry.name == name:
+                return entry
+        return None
+    </pre>
+  </div>

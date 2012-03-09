@@ -1,0 +1,318 @@
+
+<!doctype html> 
+<html> 
+<head> 
+	<script src="http://usepow.com"></script> 
+  <script src="http://usepow.com/mobile"></script> 
+  <script src="prettify/prettify.js" type="text/javascript" charset="utf-8"></script>
+
+  <link href="style.css?asd" media="screen" rel="stylesheet" type="text/css" />
+  <link href="prettify.css?asd" media="screen" rel="stylesheet" type="text/css" />
+</head> 
+<body onload="prettyPrint()"> 
+<div id="slides"> 
+	<div class="slide title"> 
+    <h1>PyClass</h1>
+    <img src="images/foot.jpg" class="center">
+  </div>
+  <div class="slide">
+    <h2>Today</h2>
+    <ul>
+      <li>Q &amp; A</li>
+      <li>Installing and Running Python</li>
+      <li>Basic Variable Types</li>
+      <li>Functions</li>
+      <li>The if Statement</li>
+      <li>Exercises</li>
+    </ul>
+  </div>
+	<div class="slide"> 
+    <h2>How much experience do you have with Python?</h2>
+  </div> 
+  <div class="slide"> 
+    <h2>Why use Python?</h2>
+    <img src="images/language_chart.jpg" width=800 />
+  </div>
+  <div class="slide"> 
+    <h2>Speed Comparison</h2>
+    <img src = "images/shootout.png" width=800 />
+	</div> 
+  <div class="slide"> 
+    <h2>Python vs C</h2>
+    <img src = "images/py_vs_c.png" width=800/>
+  </div>
+  <div class="slide">
+    <h2>Python vs Ruby: The Zen of Python</h2>
+      <pre> 
+    Beautiful is better than ugly.
+    Explicit is better than implicit.
+    Simple is better than complex.
+    Complex is better than complicated.
+    Flat is better than nested.
+    Sparse is better than dense.
+    Readability counts.
+    Special cases aren't special enough to break the rules.
+    Although practicality beats purity.
+    Errors should never pass silently.
+    Unless explicitly silenced.
+    In the face of ambiguity, refuse the temptation to guess.
+    There should be one-- and preferably only one --obvious way to do it.
+    Although that way may not be obvious at first unless you're Dutch.
+    Now is better than never.
+    Although never is often better than *right* now.
+    If the implementation is hard to explain, it's a bad idea.
+    If the implementation is easy to explain, it may be a good idea.
+    Namespaces are one honking great idea -- let's do more of those!
+    </pre>
+  </div>
+
+  <div class="slide">
+    <h2>Python vs Ruby: The Zen(?) of Ruby</h2>
+    <pre> 
+      There's more than one way to do it.
+      The principle of least surprise.
+    </pre>
+  </div>
+
+  <div class="slide">
+    <h2>Getting Python: Mac + Linux</h2>
+    <pre class="terminal">
+[17:21:17] batman@batman ~ $ python
+Python 2.6.5 (r265:79063, Nov 29 2010, 10:18:27) 
+[GCC 4.2.1 (Apple Inc. build 5664)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 
+</pre>
+</div> 
+<div class="slide">
+  <h2>Getting Python: Windows</h2>
+  <p class="center"><a class="center" href="http://www.python.org/download/releases/2.7.2/">http://www.python.org/download/releases/2.7.2/</a></p>
+</div>
+<div class="slide">
+  <h2>Learn You a Python</h2>
+  <pre class="prettyprint">
+print "Hello World!"
+  </pre>
+</div>
+  <div class="slide">
+    <h2>How To Run Programs</h2>
+    <p>Interactive Prompt:</p>
+    <pre class="terminal"> 
+[13:56:25] batman@batman ~ $ python
+Python 2.6.5 (r265:79063, Nov 29 2010, 10:18:27) 
+[GCC 4.2.1 (Apple Inc. build 5664)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> a = 2
+>>> a + a
+4
+>>> 
+    </pre>
+    <p>Running a Script:</p>
+    <pre class="terminal">
+[13:56:58] batman@batman ~ $ python test.py
+    </pre>
+  </div>
+<div class="slide">
+  <h2>Basic Variables</h2>
+  <pre class="prettyprint">
+a = 1
+b = "hello"
+  </pre>
+</div>
+<div class="slide">
+  <h2>Dynamically typed</h2>
+  <pre class="prettyprint">
+a = 1
+b = "hello"
+  </pre>
+  <p>vs C++:</p>
+  <pre class="prettyprint">
+int a = 1;
+string b = "hello";
+  </pre>
+</div>
+<div class="slide">
+  <h2>Strongly typed</h2>
+  <pre class="prettyprint">
+a = 1
+b = "hello"
+c = a + b # error!
+  </pre>
+  <p>vs Javascript:</p>
+  <pre class="prettyprint">
+a = 1;
+b = "hello";
+c = a + b; // 1hello
+  </pre>
+</div>
+<div class="slide">
+  <h2>Comments</h2>
+  <pre class="prettyprint">
+c = a + b # error!
+"""
+I am a multiline comment/string!
+Hello!
+"""
+  </pre>
+</div>
+<div class="slide">
+  <h2>Variables</h2>
+  <pre class="prettyprint">
+a = 1 # int
+b = "monty" # string
+c = 2.0 # float
+d = False # Boolean
+e = None # null
+  </pre>
+  <pre class="prettyprint">
+>>> a = 1
+>>> type(a)
+<type 'int'>
+>>> 
+  </pre>
+</div>
+<div class="slide">
+  <h2>Numbers</h2>
+  <pre class="prettyprint">
+>>> a = 1
+>>> b = 2
+>>> a + b
+3
+>>> a / b # integer division!
+0
+>>>
+</pre>
+</div>
+<div class="slide">
+  <h2>Strings</h2>
+  <pre class="prettyprint">
+>>> a = "monty"
+>>> b = "python"
+>>> a + " " + b
+'monty python'
+>>> a[0]
+'m'
+>>> a[1]
+'o'
+>>> 
+  </pre>
+</div>
+<div class="slide">
+  <h2>Strings as lists of characters</h2>
+  <pre class="prettyprint">
+>>> a = "monty"
+>>> a[0] # starts at zero
+'m'
+>>> a[0:3]
+'mon'
+>>> a [2:]
+'nty'
+>>> a[:]
+'monty'
+>>> 
+>>> a.find("n")
+2
+>>> sorted(a)
+['m', 'n', 'o', 't', 'y']
+>>> 
+  </pre>
+</div>
+<div class="slide">
+  <h2>Functions</h2>
+  <pre class="prettyprint">
+# functions we have already used:
+print "hello"
+print sorted("howdy")
+  </pre>
+</div>
+<div class="slide">
+  <h2>Making Our Own Functions</h2>
+  <pre class="prettyprint">
+def say_hello(name):
+  print "hello, " + name + "!" # indentation is important!
+
+say_hello("guido")
+  </pre>
+</div>
+<div class="slide">
+  <h2>Another Example</h2>
+  <pre class="prettyprint">
+def add(a, b):
+  return a + b
+
+print add(2, 4)
+  </pre>
+</div>
+<div class="slide">
+  <h2>Making Decisions: The if Statement</h2>
+  <pre class="prettyprint">
+def rate(language):
+  if language == "python":
+    return "awesome!"
+  else:
+    return "meh"
+  </pre>
+</div>
+<div class="slide">
+  <h2>if/elif</h2>
+  <pre class="prettyprint">
+def rate(language):
+  if language == "python":
+    return "awesome!"
+  elif language == "php":
+    return "yuck!"
+  else:
+    return "meh"
+  </pre>
+</div>
+<div class="slide">
+  <h2>or</h2>
+  <pre class="prettyprint">
+def rate(language):
+  if language == "python":
+    return "awesome!"
+  elif language == "php" or language == "perl":
+    return "yuck!"
+  else:
+    return "meh"
+  </pre>
+</div>
+<div class="slide">
+  <h2>and/or</h2>
+  <pre class="prettyprint">
+>>> a = True
+>>> b = False
+>>> a or b
+True
+>>> b or a
+True
+>>> b and a
+False
+>>> 
+  </pre>
+</div>
+<div class="slide">
+  <h2>Problem?</h2>
+  <p>http://codingbat.com/python/Warmup-1</p>
+</div>
+
+<div class="slide">
+  <h2>Sneak Preview: Lists</h2>
+  <pre class="prettyprint">
+a = [1,2,"foo"]
+b = [[1,2],[3]]
+print b[0] # prints [1,2]
+print a.reverse()
+a[0] = "44"
+print a
+x = [1,2,6,4,3,2,6,4]
+x.sort()
+print x
+  </pre>
+  <p>More things you can do with lists: http://docs.python.org/tutorial/datastructures.html</p>
+</div>
+</body> 
+</html> 
+
+
+

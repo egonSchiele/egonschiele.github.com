@@ -1,0 +1,36 @@
+.slide {
+  font-family: "Helvetica", Arial, sans-serif;
+  text-align: left;
+  padding: 10px 20px;
+}
+
+.slide h1 {
+  font-size:20px;
+  font-weight:normal;
+}
+.slide h2 { font-size:20em; font-weight:bold; }
+.slide h1, h2 { letter-spacing:-.05em; }
+.slide a { border:none; color:black; background:#ddd; padding:.25em .5em; border-radius:.25em; }
+.slide code { text-align:left; font-size:20em; font-family:monospace; padding:1em 2em; }
+
+.left {
+float: left;
+}
+
+.right {
+  float: right;
+}
+
+.center {
+  text-align: center;
+}
+
+pre, a {
+  font-size: 20px;
+}
+
+.terminal .prettyprint {
+background-color: black;
+padding: 5px 7px;
+}
+

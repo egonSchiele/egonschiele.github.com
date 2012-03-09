@@ -1,0 +1,151 @@
+
+<!doctype html> 
+<html> 
+<head> 
+	<script src="http://usepow.com"></script> 
+  <script src="http://usepow.com/mobile"></script> 
+  <script src="prettify/prettify.js" type="text/javascript" charset="utf-8"></script>
+
+  <link href="style.css?asd" media="screen" rel="stylesheet" type="text/css" />
+  <link href="prettify.css?asd" media="screen" rel="stylesheet" type="text/css" />
+</head> 
+<body onload="prettyPrint()"> 
+<div id="slides"> 
+	<div class="slide title"> 
+    <h1>PyClass</h1>
+    <img src="images/foot.jpg" class="center">
+  </div>
+  <div class="slide">
+    <h2>Today</h2>
+    <ul>
+      <li>More loops</li>
+      <li>More lists</li>
+      <li>More dictionaries</li>
+      <li>...with examples</li>
+    </ul>
+  </div>
+	<div class="slide"> 
+    <h2>Example #1: The number guessing game:</h2>
+    <p>Write a program that asks you to guess a number.</p>
+  </div> 
+
+  <div class="slide"> 
+    <h2>Setup</h2>
+    <pre class="prettyprint">
+# This is a guess the number game.
+import random
+
+guessesTaken = 0
+
+print('Hello! What is your name?')
+myName = input()
+
+number = random.randint(1, 20)
+print('Well, ' + myName + ', I am thinking of a number between 1 and 20.')
+    </pre>
+  </div>
+  <div class="slide">
+    <h2>The main body of the game:</h2>
+    <pre class="prettyprint">
+while guessesTaken < 6:
+    print('Take a guess.')
+    guess = input()
+    guess = int(guess)
+
+    guessesTaken = guessesTaken + 1
+
+    if guess < number:
+        print('Your guess is too low.')
+
+    if guess > number:
+        print('Your guess is too high.')
+
+    if guess == number:
+        break
+    </pre>
+  </div>
+  <div class="slide"> 
+    <h2>Score / results:</h2>
+<pre class="prettyprint">
+if guess == number:
+    guessesTaken = str(guessesTaken)
+    print('Good job, ' + myName + '! You guessed my number in ' + \
+    guessesTaken + ' guesses!')
+
+if guess != number:
+    number = str(number)
+    print('Nope. The number I was thinking of was ' + number)
+</pre>
+  </div>
+  <div class="slide"> 
+    <h2>Gambling with the guessing game</h2>
+    <p>Play the number guessing game, let the computer know beforehand how many chances to give you. Suppose you decide you can guess the number in 3 chances. If you do, you get (20 - 3) dollars. If you lose, you lose (20 - 3) dollars. How many chances should you ask for?</p>
+	</div> 
+  <div class="slide"> 
+    <h2>Example #2: The plaintext attack</h2>
+    <p>http://en.wikipedia.org/wiki/Chosen-plaintext_attack</p>
+    <p>Basic gist: A chosen-plaintext attack (CPA) is an attack model for cryptanalysis which presumes that the attacker has the capability to choose arbitrary plaintexts to be encrypted and obtain the corresponding ciphertexts. The goal of the attack is to gain some further information which reduces the security of the encryption scheme. In the worst case, a chosen-plaintext attack could reveal the scheme's secret key.</p>
+  </div>
+  <div class="slide">
+    <h2>Cracking encryption using the plaintext attack</h2>
+    <p>Given:</p>
+    <ul>
+    <li>1. A bunch of encrypted sentences, one of which is a sentence you requested to be encrypted.</li>
+    <li>2. The encryption is a simple substitution cipher (A = C, B = D, C = E, D = F etc)</li>
+  </ul>
+  <p>Decrypt all sentences.</p>
+  </div>
+
+  <div class="slide">
+    <h2>Encrypted lines (saved in a text file):</h2>
+    <pre class="prettyprint"> 
+uryyb gurer
+gur dhvpx oebja sbk whzcf bire gur ynml qbt
+sbhe fpber naq frira lrnef ntb
+rirelguvat va vgf evtug cynpr
+    </pre>
+</div>
+
+  <div class="slide">
+    <h2>Setup + read file</h2>
+    <pre class="prettyprint"> 
+import string
+import sys
+
+_lines = open("test.txt", "r").readlines()
+lines = [x.rstrip() for x in _lines]
+    </pre>
+  </div>
+
+  <div class="slide">
+    <h2>Find the encrypted version of our line:</h2>
+    <pre class="prettyprint">
+our_unencrypted_line = "the quick brown fox jumps over the lazy dog"
+our_line = ""
+
+for line in lines:
+    for a in string.lowercase:
+        if a not in line: break
+    else:
+        our_line = line
+    </pre>
+</div> 
+<div class="slide">
+  <h2>Decrypt all lines:</h2>
+<pre class="prettyprint">
+translation = {}
+
+for encrypted, unencrypted in zip(our_line, our_unencrypted_line):
+    translation[encrypted] = unencrypted
+
+for line in lines:
+    for a in line:
+        sys.stdout.write(translation[a])
+        print
+</pre>
+</div>
+<div class="slide">
+  <h2>Problem 3: The Animal Game</h2>
+  <p>See a demo online: http://animalgame.com</p>
+  <p>[Code will be written in class]</p>
+</div>

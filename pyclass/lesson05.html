@@ -1,0 +1,100 @@
+
+<!doctype html> 
+<html> 
+<head> 
+	<script src="http://usepow.com"></script> 
+  <script src="http://usepow.com/mobile"></script> 
+  <script src="prettify/prettify.js" type="text/javascript" charset="utf-8"></script>
+
+  <link href="style.css?asd" media="screen" rel="stylesheet" type="text/css" />
+  <link href="prettify.css?asd" media="screen" rel="stylesheet" type="text/css" />
+</head> 
+<body onload="prettyPrint()"> 
+<div id="slides"> 
+	<div class="slide title"> 
+    <h1>PyClass</h1>
+    <img src="images/foot.jpg" class="center">
+  </div>
+  <div class="slide">
+    <h2>Today</h2>
+    <ul>
+      <li>Object-oriented Programming</li>
+    </ul>
+  </div>
+  <div class="slide">
+    <h2>Terminology</h2>
+    <ul>
+      <li><strong>Class:</strong>The blueprint for an object.</li>
+      <li><strong>Object:</strong>A data structure consisting of data fields and methods (functions).</li>
+      <li><strong>Instance:</strong>Another name for an object.</li>
+    </ul>
+  </div>
+  <div class="slide">
+    <img src="images/class_diagram.jpg" />
+  </div>
+  <div class="slide">
+    <p>The class is the template, and the object is what gets built from that template.</p>
+    <img src="images/rocket_class_diagram.jpg" />
+  </div>
+  <div class="slide"> 
+    <h2>Our first class: class Dog</h2>
+    <img src="images/dog_blueprint.jpg" />
+  </div> 
+
+  <div class="slide"> 
+    <h2>The most basic class:</h2>
+    <pre class="prettyprint">
+class Dog(object):
+    pass
+    </pre>
+  </div>
+  <div class="slide">
+    <h2>Making a new Dog object:</h2>
+    <pre class="prettyprint">
+d = Dog()
+print d
+    </pre>
+  </div>
+  <div class="slide"> 
+    <h2>Constructor:</h2>
+    <p>The constructor gets called when a new object is created.</p>
+<pre class="prettyprint">
+class Dog(object):
+    def __init__(self):
+      print "I'm in the constructor!"
+
+d = Dog()
+</pre>
+	</div> 
+  <div class="slide"> 
+    <h2>Instance Variables:</h2>
+<pre class="prettyprint">
+class Dog(object):
+    def __init__(self, name):
+        self.name = name
+
+d = Dog("snowy")
+print d.name
+</pre>
+  </div>
+  <div class="slide">
+    <h2>Methods:</h2>
+    <pre class="prettyprint"> 
+class Dog(object):
+    def bark(self):
+        print "woof! woof!"
+
+d = Dog()
+d.bark()        
+      </pre>
+</div>
+
+<div class="slide">
+  <h2>A To-Do List Application</h2>
+  <pre class="prettyprint"> 
+class ListItem(object):
+    def __init__(self, value):
+        self.value = value
+  </pre>
+</div>
+
