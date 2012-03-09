@@ -1,0 +1,8 @@
+.*
+*.swp
+*.swo
+*.hi
+*.o
+main
+_cache/*
+_site/*
